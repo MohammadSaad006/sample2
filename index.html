@@ -13,6 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.clouds.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.cells.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.fog.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.birds.min.js"></script> <!-- Added -->
     <style>
         /* --- PROFESSIONAL COLOR THEME --- */
         :root {
@@ -1098,6 +1099,7 @@
         <button class="bg-toggle-btn" id="bg-clouds">Clouds</button>
         <button class="bg-toggle-btn" id="bg-cells">Cells</button>
         <button class="bg-toggle-btn" id="bg-fog">Fog</button>
+        <button class="bg-toggle-btn" id="bg-birds">Birds</button> <!-- Added -->
     </div>
     
     <div class="mobile-vanta-settings">
@@ -1112,6 +1114,7 @@
             <button class="vanta-mode-btn" data-mode="clouds">Clouds</button>
             <button class="vanta-mode-btn" data-mode="cells">Cells</button>
             <button class="vanta-mode-btn" data-mode="fog">Fog</button>
+            <button class="vanta-mode-btn" data-mode="birds">Birds</button> <!-- Added -->
             <button id="close-vanta-settings" aria-label="Close">&times;</button>
         </div>
     </div>
@@ -1366,6 +1369,30 @@
             });
         }
         
+        function initVantaBirds() {
+            if (vantaEffect) vantaEffect.destroy();
+            vantaEffect = VANTA.BIRDS({
+                el: "#vanta-bg",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                scale: 1.00,
+                scaleMobile: 1.00,
+                backgroundColor: 0xf8f9fa,
+                color1: 0x4a8fe7,
+                color2: 0x1d4e89,
+                birdSize: 1.20,
+                wingSpan: 25.00,
+                speedLimit: 4.00,
+                separation: 50.00,
+                alignment: 50.00,
+                cohesion: 50.00,
+                quantity: 3.00
+            });
+        }
+        
         // Set default background
         initVantaFog();
         
@@ -1376,6 +1403,7 @@
         document.getElementById('bg-clouds').addEventListener('click', initVantaClouds);
         document.getElementById('bg-cells').addEventListener('click', initVantaCells);
         document.getElementById('bg-fog').addEventListener('click', initVantaFog);
+        document.getElementById('bg-birds').addEventListener('click', initVantaBirds); // Added
         
         // Hide mobile nav bar if present
         document.querySelectorAll('.mobile-nav').forEach(el => el.style.display = 'none');
@@ -1407,6 +1435,7 @@
                 if (btn.dataset.mode === 'clouds') initVantaClouds();
                 if (btn.dataset.mode === 'cells') initVantaCells();
                 if (btn.dataset.mode === 'fog') initVantaFog();
+                if (btn.dataset.mode === 'birds') initVantaBirds(); // Added
                 vantaSettingsModal.style.display = 'none';
             });
         });
@@ -1429,6 +1458,7 @@
                 if (mode === 'clouds') initVantaClouds();
                 if (mode === 'cells') initVantaCells();
                 if (mode === 'fog') initVantaFog();
+                if (mode === 'birds') initVantaBirds(); // Added
                 
                 document.getElementById('vanta-settings-modal').style.display = 'none';
             });
